@@ -1,0 +1,8 @@
+Flask
+flask-cors
+flask-limiter
+requests
+PyYAML
+termcolor
+vulners
+python-jose[cryptography]

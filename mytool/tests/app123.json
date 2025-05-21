@@ -1,0 +1,3389 @@
+{
+    "type": "openapi",
+    "original_filename": "app123",
+    "content": {
+        "openapi": "3.0.2",
+        "info": {
+            "title": "hAPI Airlines",
+            "description": "hAPI Airlines Developer REST API",
+            "version": "0.1.0"
+        },
+        "servers": [
+            {
+                "url": "/api"
+            }
+        ],
+        "paths": {
+            "/v2/register": {
+                "post": {
+                    "tags": [
+                        "OAUTH2",
+                        "OAUTH2"
+                    ],
+                    "summary": "Register",
+                    "operationId": "create_v2_register_post",
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserRegistration"
+                                }
+                            }
+                        },
+                        "required": true
+                    },
+                    "responses": {
+                        "201": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/UserOut"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/token": {
+                "post": {
+                    "tags": [
+                        "OAUTH2"
+                    ],
+                    "summary": "Login",
+                    "operationId": "login_v2_token_post",
+                    "requestBody": {
+                        "content": {
+                            "application/x-www-form-urlencoded": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Body_login_v2_token_post"
+                                }
+                            }
+                        },
+                        "required": true
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Login V2 Token Post",
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/healthz/": {
+                "get": {
+                    "tags": [
+                        "Application"
+                    ],
+                    "summary": "Healthz",
+                    "description": "Check if Server is running.",
+                    "operationId": "healthz_v2_healthz__get",
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HealthZ"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/users/": {
+                "get": {
+                    "tags": [
+                        "User"
+                    ],
+                    "summary": "Get all users in the current user's group",
+                    "operationId": "get_all_v2_users__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get All V2 Users  Get",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/UserOut"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/users/whoami": {
+                "get": {
+                    "tags": [
+                        "User"
+                    ],
+                    "summary": "Verify a token is valid and get the current user's information.",
+                    "operationId": "whoami_v2_users_whoami_get",
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/UserOut"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/users/{user_id}": {
+                "get": {
+                    "tags": [
+                        "User"
+                    ],
+                    "summary": "Get a user's information by id",
+                    "operationId": "get_v2_users__user_id__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "User Id",
+                                "type": "string"
+                            },
+                            "name": "user_id",
+                            "in": "path"
+                        },
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "responses": {
+                        "201": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/UserOut"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                },
+                "patch": {
+                    "tags": [
+                        "User"
+                    ],
+                    "summary": "Update a user as an admin",
+                    "operationId": "update_v2_users__user_id__patch",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "User Id",
+                                "type": "string"
+                            },
+                            "name": "user_id",
+                            "in": "path"
+                        },
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserUpdate"
+                                }
+                            }
+                        },
+                        "required": true
+                    },
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/UserOut"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/airpass/": {
+                "get": {
+                    "tags": [
+                        "Airpass"
+                    ],
+                    "summary": "Get Current User's AirPass Document",
+                    "operationId": "get_self_v2_airpass__get",
+                    "responses": {
+                        "201": {
+                            "description": "Successful Response"
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/airpass/{user_id}": {
+                "get": {
+                    "tags": [
+                        "Airpass"
+                    ],
+                    "summary": "Get a Specified User's AirPass document",
+                    "operationId": "get_user_v2_airpass__user_id__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "User Id",
+                                "type": "string"
+                            },
+                            "name": "user_id",
+                            "in": "path"
+                        },
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response"
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/airlines/": {
+                "get": {
+                    "tags": [
+                        "Airlines"
+                    ],
+                    "summary": "Get Airlines",
+                    "operationId": "get_airlines_v2_airlines__get",
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get Airlines V2 Airlines  Get",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/Airline"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/airlines/by-code/{code}": {
+                "get": {
+                    "tags": [
+                        "Airlines"
+                    ],
+                    "summary": "Get Airline By Code",
+                    "operationId": "get_airline_by_code_v2_airlines_by_code__code__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Code",
+                                "type": "string"
+                            },
+                            "name": "code",
+                            "in": "path"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/Airline"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/airlines/by-hub/{hub}": {
+                "get": {
+                    "tags": [
+                        "Airlines"
+                    ],
+                    "summary": "Get Airline By Hub",
+                    "operationId": "get_airline_by_hub_v2_airlines_by_hub__hub__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Hub",
+                                "type": "string"
+                            },
+                            "name": "hub",
+                            "in": "path"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get Airline By Hub V2 Airlines By Hub  Hub  Get",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/Airline"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/airlines/by-country/{country}": {
+                "get": {
+                    "tags": [
+                        "Airlines"
+                    ],
+                    "summary": "Get Airline By Country",
+                    "operationId": "get_airline_by_country_v2_airlines_by_country__country__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Country",
+                                "type": "string"
+                            },
+                            "name": "country",
+                            "in": "path"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get Airline By Country V2 Airlines By Country  Country  Get",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/Airline"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/airports/": {
+                "get": {
+                    "tags": [
+                        "Airports"
+                    ],
+                    "summary": "Get Airports",
+                    "operationId": "get_airports_v2_airports__get",
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get Airports V2 Airports  Get",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/AirportWithoutGates"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/airports/{code}/gates": {
+                "get": {
+                    "tags": [
+                        "Airports"
+                    ],
+                    "summary": "Get Gates",
+                    "operationId": "get_gates_v2_airports__code__gates_get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Code",
+                                "type": "string"
+                            },
+                            "name": "code",
+                            "in": "path"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get Gates V2 Airports  Code  Gates Get",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/airports/{code}/shops": {
+                "get": {
+                    "tags": [
+                        "Airports"
+                    ],
+                    "summary": "Get Airport Shops",
+                    "operationId": "get_airport_shops_v2_airports__code__shops_get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Code",
+                                "type": "string"
+                            },
+                            "name": "code",
+                            "in": "path"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get Airport Shops V2 Airports  Code  Shops Get",
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "deprecated": true
+                }
+            },
+            "/v2/credits/": {
+                "get": {
+                    "tags": [
+                        "HAPI Credits"
+                    ],
+                    "summary": "Get the credit account details for the specified group.",
+                    "operationId": "get_account_v2_credits__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/CreditAccountOut"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/credits/transfer": {
+                "post": {
+                    "tags": [
+                        "HAPI Credits",
+                        "Admin"
+                    ],
+                    "summary": "Create a credit transfer",
+                    "operationId": "create_transfer_v2_credits_transfer_post",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TransferIn"
+                                }
+                            }
+                        },
+                        "required": true
+                    },
+                    "responses": {
+                        "201": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/CreditTransferOut"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/credits/transfer/{transfer_id}/approve": {
+                "put": {
+                    "tags": [
+                        "HAPI Credits",
+                        "Admin"
+                    ],
+                    "summary": "Approve a credit transfer",
+                    "operationId": "approve_transfer_v2_credits_transfer__transfer_id__approve_put",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Transfer Id",
+                                "type": "string"
+                            },
+                            "name": "transfer_id",
+                            "in": "path"
+                        },
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "responses": {
+                        "201": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/TransferApproved"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/ffm/": {
+                "get": {
+                    "tags": [
+                        "Frequent Flier Miles"
+                    ],
+                    "summary": "Get All",
+                    "operationId": "get_all_v2_ffm__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/ModelOut"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                },
+                "post": {
+                    "tags": [
+                        "Frequent Flier Miles"
+                    ],
+                    "summary": "Create",
+                    "operationId": "create_v2_ffm__post",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "requestBody": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FFMRedemption"
+                                }
+                            }
+                        },
+                        "required": true
+                    },
+                    "responses": {
+                        "201": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Create V2 Ffm  Post",
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/ffm/{redemption_code}": {
+                "delete": {
+                    "tags": [
+                        "Frequent Flier Miles"
+                    ],
+                    "summary": "Delete",
+                    "operationId": "delete_v2_ffm__redemption_code__delete",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Redemption Code",
+                                "type": "string"
+                            },
+                            "name": "redemption_code",
+                            "in": "path"
+                        },
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "responses": {
+                        "204": {
+                            "description": "Successful Response"
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/ffm/redeem/{redemption_code}": {
+                "post": {
+                    "tags": [
+                        "Frequent Flier Miles"
+                    ],
+                    "summary": "Redeem",
+                    "operationId": "redeem_v2_ffm_redeem__redemption_code__post",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Redemption Code",
+                                "type": "string"
+                            },
+                            "name": "redemption_code",
+                            "in": "path"
+                        },
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "responses": {
+                        "202": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/ModelOut"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/flights/scheduled": {
+                "get": {
+                    "tags": [
+                        "Flights"
+                    ],
+                    "summary": "Get Scheduled",
+                    "operationId": "get_scheduled_v2_flights_scheduled_get",
+                    "parameters": [
+                        {
+                            "required": false,
+                            "schema": {
+                                "title": "Type",
+                                "enum": [
+                                    "public",
+                                    "charter"
+                                ],
+                                "type": "string"
+                            },
+                            "name": "type",
+                            "in": "query"
+                        },
+                        {
+                            "required": false,
+                            "schema": {
+                                "title": "Limit",
+                                "type": "integer",
+                                "default": 50
+                            },
+                            "name": "limit",
+                            "in": "query"
+                        },
+                        {
+                            "required": false,
+                            "schema": {
+                                "title": "Skip",
+                                "type": "integer",
+                                "default": 0
+                            },
+                            "name": "skip",
+                            "in": "query"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get Scheduled V2 Flights Scheduled Get",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/Flight"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/flights/history": {
+                "get": {
+                    "tags": [
+                        "Flights"
+                    ],
+                    "summary": "Get History",
+                    "operationId": "get_history_v2_flights_history_get",
+                    "parameters": [
+                        {
+                            "required": false,
+                            "schema": {
+                                "title": "Type",
+                                "enum": [
+                                    "public",
+                                    "charter"
+                                ],
+                                "type": "string"
+                            },
+                            "name": "type",
+                            "in": "query"
+                        },
+                        {
+                            "required": false,
+                            "schema": {
+                                "title": "Limit",
+                                "type": "integer",
+                                "default": 50
+                            },
+                            "name": "limit",
+                            "in": "query"
+                        },
+                        {
+                            "required": false,
+                            "schema": {
+                                "title": "Skip",
+                                "type": "integer",
+                                "default": 0
+                            },
+                            "name": "skip",
+                            "in": "query"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get History V2 Flights History Get",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/Flight"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/flights/{flight_id}": {
+                "get": {
+                    "tags": [
+                        "Flights"
+                    ],
+                    "summary": "Get Flight",
+                    "operationId": "get_flight_v2_flights__flight_id__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Flight Id",
+                                "type": "string"
+                            },
+                            "name": "flight_id",
+                            "in": "path"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/FlightOut"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/flights/status/{flight_id}": {
+                "get": {
+                    "tags": [
+                        "Flights"
+                    ],
+                    "summary": "Get Flight Status",
+                    "operationId": "get_flight_status_v2_flights_status__flight_id__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Flight Id",
+                                "type": "string"
+                            },
+                            "name": "flight_id",
+                            "in": "path"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get Flight Status V2 Flights Status  Flight Id  Get",
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "/v2/integrations/": {
+                "get": {
+                    "tags": [
+                        "Admin",
+                        "Integrations"
+                    ],
+                    "summary": "Get integration configs for the users group",
+                    "operationId": "get_v2_integrations__get",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Get V2 Integrations  Get",
+                                        "type": "array",
+                                        "items": {
+                                            "$ref": "#/components/schemas/IntegrationConfig"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            },
+            "/v2/integrations/{integration_id}": {
+                "patch": {
+                    "tags": [
+                        "Admin",
+                        "Integrations"
+                    ],
+                    "summary": "Update a group integration",
+                    "operationId": "update_v2_integrations__integration_id__patch",
+                    "parameters": [
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "Integration Id",
+                                "type": "string"
+                            },
+                            "name": "integration_id",
+                            "in": "path"
+                        },
+                        {
+                            "required": true,
+                            "schema": {
+                                "title": "X-Group-Id",
+                                "type": "string"
+                            },
+                            "name": "x-group-id",
+                            "in": "header"
+                        }
+                    ],
+                    "responses": {
+                        "200": {
+                            "description": "Successful Response",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "title": "Response Update V2 Integrations  Integration Id  Patch",
+                                        "type": "object",
+                                        "additionalProperties": {
+                                            "type": "boolean"
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "422": {
+                            "description": "Validation Error",
+                            "content": {
+                                "application/json": {
+                                    "schema": {
+                                        "$ref": "#/components/schemas/HTTPValidationError"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "security": [
+                        {
+                            "PermissionDependency": []
+                        },
+                        {
+                            "PermissionDependency": []
+                        }
+                    ]
+                }
+            }
+        },
+        "components": {
+            "schemas": {
+                "Airline": {
+                    "title": "Airline",
+                    "required": [
+                        "name",
+                        "code",
+                        "country",
+                        "hub_airport_id"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "name": {
+                            "title": "Name",
+                            "type": "string"
+                        },
+                        "code": {
+                            "title": "Code",
+                            "type": "string"
+                        },
+                        "country": {
+                            "title": "Country",
+                            "type": "string"
+                        },
+                        "hub_airport_id": {
+                            "title": "Hub Airport Id",
+                            "type": "string"
+                        },
+                        "hub_airport": {
+                            "$ref": "#/components/schemas/Airport"
+                        }
+                    }
+                },
+                "Airport": {
+                    "title": "Airport",
+                    "required": [
+                        "name",
+                        "code",
+                        "city",
+                        "state",
+                        "country",
+                        "terminals"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "name": {
+                            "title": "Name",
+                            "type": "string"
+                        },
+                        "code": {
+                            "title": "Code",
+                            "type": "string"
+                        },
+                        "city": {
+                            "title": "City",
+                            "type": "string"
+                        },
+                        "state": {
+                            "title": "State",
+                            "type": "string"
+                        },
+                        "country": {
+                            "title": "Country",
+                            "type": "string"
+                        },
+                        "terminals": {
+                            "title": "Terminals",
+                            "type": "integer"
+                        },
+                        "gates": {
+                            "title": "Gates",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Gate"
+                            }
+                        }
+                    }
+                },
+                "AirportWithoutGates": {
+                    "title": "AirportWithoutGates",
+                    "required": [
+                        "name",
+                        "code",
+                        "city",
+                        "state",
+                        "country",
+                        "terminals"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "name": {
+                            "title": "Name",
+                            "type": "string"
+                        },
+                        "code": {
+                            "title": "Code",
+                            "type": "string"
+                        },
+                        "city": {
+                            "title": "City",
+                            "type": "string"
+                        },
+                        "state": {
+                            "title": "State",
+                            "type": "string"
+                        },
+                        "country": {
+                            "title": "Country",
+                            "type": "string"
+                        },
+                        "terminals": {
+                            "title": "Terminals",
+                            "type": "integer"
+                        },
+                        "gates": {
+                            "title": "Gates",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/Gate"
+                            }
+                        }
+                    }
+                },
+                "Body_login_v2_token_post": {
+                    "title": "Body_login_v2_token_post",
+                    "required": [
+                        "username",
+                        "password"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "grant_type": {
+                            "title": "Grant Type",
+                            "pattern": "password",
+                            "type": "string"
+                        },
+                        "username": {
+                            "title": "Username",
+                            "type": "string"
+                        },
+                        "password": {
+                            "title": "Password",
+                            "type": "string"
+                        },
+                        "scope": {
+                            "title": "Scope",
+                            "type": "string",
+                            "default": ""
+                        },
+                        "client_id": {
+                            "title": "Client Id",
+                            "type": "string"
+                        },
+                        "client_secret": {
+                            "title": "Client Secret",
+                            "type": "string"
+                        }
+                    }
+                },
+                "CreditAccount": {
+                    "title": "CreditAccount",
+                    "required": [
+                        "group_id"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "account_id": {
+                            "title": "Account Id",
+                            "type": "string"
+                        },
+                        "balance": {
+                            "title": "Balance",
+                            "type": "number",
+                            "default": 0.0
+                        },
+                        "group_id": {
+                            "title": "Group Id",
+                            "type": "string"
+                        }
+                    }
+                },
+                "CreditAccountOut": {
+                    "title": "CreditAccountOut",
+                    "required": [
+                        "group_id"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "account_id": {
+                            "title": "Account Id",
+                            "type": "string"
+                        },
+                        "balance": {
+                            "title": "Balance",
+                            "type": "number",
+                            "default": 0.0
+                        },
+                        "group_id": {
+                            "title": "Group Id",
+                            "type": "string"
+                        },
+                        "credits": {
+                            "title": "Credits",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/CreditTransferOut"
+                            },
+                            "local_relationship_field": "account_id",
+                            "remote_relationship_field": "to_account_id"
+                        },
+                        "debits": {
+                            "title": "Debits",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/CreditTransferOut"
+                            },
+                            "local_relationship_field": "account_id",
+                            "remote_relationship_field": "from_account_id"
+                        }
+                    }
+                },
+                "CreditTransferOut": {
+                    "title": "CreditTransferOut",
+                    "required": [
+                        "amount",
+                        "from_account_id",
+                        "to_account_id"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "amount": {
+                            "title": "Amount",
+                            "type": "number"
+                        },
+                        "confirmation_number": {
+                            "title": "Confirmation Number",
+                            "type": "string"
+                        },
+                        "from_account_id": {
+                            "title": "From Account Id",
+                            "type": "string"
+                        },
+                        "to_account_id": {
+                            "title": "To Account Id",
+                            "type": "string"
+                        },
+                        "status": {
+                            "title": "Status",
+                            "enum": [
+                                "pending",
+                                "approved",
+                                "denied",
+                                "complete"
+                            ],
+                            "type": "string",
+                            "default": "pending"
+                        },
+                        "timestamp": {
+                            "title": "Timestamp",
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "from_account": {
+                            "title": "From Account",
+                            "allOf": [
+                                {
+                                    "$ref": "#/components/schemas/CreditAccount"
+                                }
+                            ],
+                            "local_relationship_field": "from_account_id",
+                            "remote_relationship_field": "account_id"
+                        },
+                        "to_account": {
+                            "title": "To Account",
+                            "allOf": [
+                                {
+                                    "$ref": "#/components/schemas/CreditAccount"
+                                }
+                            ],
+                            "local_relationship_field": "to_account_id",
+                            "remote_relationship_field": "account_id"
+                        }
+                    }
+                },
+                "FFMRedemption": {
+                    "title": "FFMRedemption",
+                    "required": [
+                        "amount"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "amount": {
+                            "title": "Amount",
+                            "type": "integer"
+                        },
+                        "redemption_code": {
+                            "title": "Redemption Code",
+                            "type": "string"
+                        },
+                        "timestamp": {
+                            "title": "Timestamp",
+                            "type": "string",
+                            "format": "date-time"
+                        }
+                    }
+                },
+                "Flight": {
+                    "title": "Flight",
+                    "required": [
+                        "flight_id",
+                        "departure_time",
+                        "arrival_time",
+                        "capacity",
+                        "available_seats",
+                        "airline_id",
+                        "departure_airport_id",
+                        "arrival_airport_id"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "flight_id": {
+                            "title": "Flight Id",
+                            "type": "string"
+                        },
+                        "departure_time": {
+                            "title": "Departure Time",
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "arrival_time": {
+                            "title": "Arrival Time",
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "capacity": {
+                            "title": "Capacity",
+                            "type": "integer"
+                        },
+                        "available_seats": {
+                            "title": "Available Seats",
+                            "type": "integer"
+                        },
+                        "status": {
+                            "title": "Status",
+                            "enum": [
+                                "scheduled",
+                                "boarding",
+                                "canceled",
+                                "delayed",
+                                "in-air",
+                                "landed"
+                            ],
+                            "type": "string",
+                            "default": "scheduled"
+                        },
+                        "type": {
+                            "title": "Type",
+                            "enum": [
+                                "public",
+                                "charter"
+                            ],
+                            "type": "string",
+                            "default": "public"
+                        },
+                        "group_id": {
+                            "title": "Group Id",
+                            "type": "string"
+                        },
+                        "airline_id": {
+                            "title": "Airline Id",
+                            "type": "string"
+                        },
+                        "departure_airport_id": {
+                            "title": "Departure Airport Id",
+                            "type": "string"
+                        },
+                        "arrival_airport_id": {
+                            "title": "Arrival Airport Id",
+                            "type": "string"
+                        }
+                    }
+                },
+                "FlightOut": {
+                    "title": "FlightOut",
+                    "required": [
+                        "flight_id",
+                        "departure_time",
+                        "arrival_time",
+                        "capacity",
+                        "available_seats",
+                        "airline_id",
+                        "departure_airport_id",
+                        "arrival_airport_id"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "flight_id": {
+                            "title": "Flight Id",
+                            "type": "string"
+                        },
+                        "departure_time": {
+                            "title": "Departure Time",
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "arrival_time": {
+                            "title": "Arrival Time",
+                            "type": "string",
+                            "format": "date-time"
+                        },
+                        "capacity": {
+                            "title": "Capacity",
+                            "type": "integer"
+                        },
+                        "available_seats": {
+                            "title": "Available Seats",
+                            "type": "integer"
+                        },
+                        "status": {
+                            "title": "Status",
+                            "enum": [
+                                "scheduled",
+                                "boarding",
+                                "canceled",
+                                "delayed",
+                                "in-air",
+                                "landed"
+                            ],
+                            "type": "string",
+                            "default": "scheduled"
+                        },
+                        "type": {
+                            "title": "Type",
+                            "enum": [
+                                "public",
+                                "charter"
+                            ],
+                            "type": "string",
+                            "default": "public"
+                        },
+                        "group_id": {
+                            "title": "Group Id",
+                            "type": "string"
+                        },
+                        "airline_id": {
+                            "title": "Airline Id",
+                            "type": "string"
+                        },
+                        "departure_airport_id": {
+                            "title": "Departure Airport Id",
+                            "type": "string"
+                        },
+                        "arrival_airport_id": {
+                            "title": "Arrival Airport Id",
+                            "type": "string"
+                        },
+                        "airline": {
+                            "$ref": "#/components/schemas/Airline"
+                        },
+                        "departure_airport": {
+                            "$ref": "#/components/schemas/Airport"
+                        },
+                        "arrival_airport": {
+                            "$ref": "#/components/schemas/Airport"
+                        }
+                    }
+                },
+                "Gate": {
+                    "title": "Gate",
+                    "required": [
+                        "id"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        }
+                    }
+                },
+                "HTTPValidationError": {
+                    "title": "HTTPValidationError",
+                    "type": "object",
+                    "properties": {
+                        "detail": {
+                            "title": "Detail",
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/components/schemas/ValidationError"
+                            }
+                        }
+                    }
+                },
+                "HealthZ": {
+                    "title": "HealthZ",
+                    "type": "object",
+                    "properties": {
+                        "ok": {
+                            "title": "Ok",
+                            "type": "boolean",
+                            "default": true
+                        }
+                    }
+                },
+                "IntegrationConfig": {
+                    "title": "IntegrationConfig",
+                    "required": [
+                        "group_id",
+                        "name",
+                        "description",
+                        "url",
+                        "token"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "group_id": {
+                            "title": "Group Id",
+                            "type": "string"
+                        },
+                        "name": {
+                            "title": "Name",
+                            "type": "string"
+                        },
+                        "description": {
+                            "title": "Description",
+                            "type": "string"
+                        },
+                        "url": {
+                            "title": "Url",
+                            "type": "string"
+                        },
+                        "token": {
+                            "title": "Token",
+                            "type": "string"
+                        }
+                    }
+                },
+                "ModelOut": {
+                    "title": "ModelOut",
+                    "required": [
+                        "points"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "points": {
+                            "title": "Points",
+                            "type": "integer"
+                        }
+                    }
+                },
+                "Password": {
+                    "title": "Password",
+                    "required": [
+                        "hash",
+                        "type"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "hash": {
+                            "title": "Hash",
+                            "type": "string"
+                        },
+                        "type": {
+                            "title": "Type",
+                            "type": "string"
+                        }
+                    }
+                },
+                "TransferApproved": {
+                    "title": "TransferApproved",
+                    "required": [
+                        "confirmation_number"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "confirmation_number": {
+                            "title": "Confirmation Number",
+                            "type": "string"
+                        },
+                        "detail": {
+                            "title": "Detail",
+                            "type": "string"
+                        }
+                    }
+                },
+                "TransferIn": {
+                    "title": "TransferIn",
+                    "required": [
+                        "amount",
+                        "from_account_id",
+                        "to_account_id"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "amount": {
+                            "title": "Amount",
+                            "type": "number"
+                        },
+                        "from_account_id": {
+                            "title": "From Account Id",
+                            "type": "string"
+                        },
+                        "to_account_id": {
+                            "title": "To Account Id",
+                            "type": "string"
+                        }
+                    }
+                },
+                "UserOut": {
+                    "title": "UserOut",
+                    "required": [
+                        "name",
+                        "email"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "id": {
+                            "title": "Id",
+                            "type": "string"
+                        },
+                        "name": {
+                            "title": "Name",
+                            "type": "string"
+                        },
+                        "email": {
+                            "title": "Email",
+                            "type": "string",
+                            "format": "email"
+                        },
+                        "role": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/components/schemas/UserRole"
+                                }
+                            ],
+                            "default": "user"
+                        },
+                        "password": {
+                            "$ref": "#/components/schemas/Password"
+                        },
+                        "group_id": {
+                            "title": "Group Id",
+                            "type": "string"
+                        },
+                        "airpass_id": {
+                            "title": "Airpass Id",
+                            "type": "string"
+                        },
+                        "ffm": {
+                            "title": "Ffm",
+                            "type": "integer",
+                            "default": 0
+                        }
+                    }
+                },
+                "UserRegistration": {
+                    "title": "UserRegistration",
+                    "required": [
+                        "name",
+                        "username",
+                        "password"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "title": "Name",
+                            "type": "string"
+                        },
+                        "role": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/components/schemas/UserRole"
+                                }
+                            ],
+                            "default": "user"
+                        },
+                        "username": {
+                            "title": "Username",
+                            "type": "string",
+                            "format": "email"
+                        },
+                        "password": {
+                            "title": "Password",
+                            "type": "string"
+                        },
+                        "invite_code": {
+                            "title": "Invite Code",
+                            "type": "string"
+                        }
+                    }
+                },
+                "UserRole": {
+                    "title": "UserRole",
+                    "enum": [
+                        "admin",
+                        "user"
+                    ],
+                    "description": "An enumeration."
+                },
+                "UserUpdate": {
+                    "title": "UserUpdate",
+                    "type": "object",
+                    "properties": {
+                        "name": {
+                            "title": "Name",
+                            "type": "string"
+                        },
+                        "role": {
+                            "$ref": "#/components/schemas/UserRole"
+                        },
+                        "password": {
+                            "title": "Password",
+                            "type": "string"
+                        }
+                    }
+                },
+                "ValidationError": {
+                    "title": "ValidationError",
+                    "required": [
+                        "loc",
+                        "msg",
+                        "type"
+                    ],
+                    "type": "object",
+                    "properties": {
+                        "loc": {
+                            "title": "Location",
+                            "type": "array",
+                            "items": {
+                                "anyOf": [
+                                    {
+                                        "type": "string"
+                                    },
+                                    {
+                                        "type": "integer"
+                                    }
+                                ]
+                            }
+                        },
+                        "msg": {
+                            "title": "Message",
+                            "type": "string"
+                        },
+                        "type": {
+                            "title": "Error Type",
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "securitySchemes": {
+                "PermissionDependency": {
+                    "type": "oauth2",
+                    "flows": {
+                        "password": {
+                            "scopes": {},
+                            "tokenUrl": "/api/v2/token"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "endpoints": [
+        {
+            "method": "POST",
+            "path": "/v2/register",
+            "summary": "Register",
+            "parameters": [],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/UserRegistration"
+                        }
+                    }
+                },
+                "required": true
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserOut"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "POST",
+            "path": "/v2/token",
+            "summary": "Login",
+            "parameters": [],
+            "requestBody": {
+                "content": {
+                    "application/x-www-form-urlencoded": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Body_login_v2_token_post"
+                        }
+                    }
+                },
+                "required": true
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Login V2 Token Post",
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/healthz/",
+            "summary": "Healthz",
+            "parameters": [],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HealthZ"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/users/",
+            "summary": "Get all users in the current user's group",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get All V2 Users  Get",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/UserOut"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/users/whoami",
+            "summary": "Verify a token is valid and get the current user's information.",
+            "parameters": [],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserOut"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/users/{user_id}",
+            "summary": "Get a user's information by id",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "User Id",
+                        "type": "string"
+                    },
+                    "name": "user_id",
+                    "in": "path"
+                },
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserOut"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "PATCH",
+            "path": "/v2/users/{user_id}",
+            "summary": "Update a user as an admin",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "User Id",
+                        "type": "string"
+                    },
+                    "name": "user_id",
+                    "in": "path"
+                },
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/UserUpdate"
+                        }
+                    }
+                },
+                "required": true
+            },
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UserOut"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/airpass/",
+            "summary": "Get Current User's AirPass Document",
+            "parameters": [],
+            "requestBody": {},
+            "responses": {
+                "201": {
+                    "description": "Successful Response"
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/airpass/{user_id}",
+            "summary": "Get a Specified User's AirPass document",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "User Id",
+                        "type": "string"
+                    },
+                    "name": "user_id",
+                    "in": "path"
+                },
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response"
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/airlines/",
+            "summary": "Get Airlines",
+            "parameters": [],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get Airlines V2 Airlines  Get",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Airline"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/airlines/by-code/{code}",
+            "summary": "Get Airline By Code",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Code",
+                        "type": "string"
+                    },
+                    "name": "code",
+                    "in": "path"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Airline"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/airlines/by-hub/{hub}",
+            "summary": "Get Airline By Hub",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Hub",
+                        "type": "string"
+                    },
+                    "name": "hub",
+                    "in": "path"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get Airline By Hub V2 Airlines By Hub  Hub  Get",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Airline"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/airlines/by-country/{country}",
+            "summary": "Get Airline By Country",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Country",
+                        "type": "string"
+                    },
+                    "name": "country",
+                    "in": "path"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get Airline By Country V2 Airlines By Country  Country  Get",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Airline"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/airports/",
+            "summary": "Get Airports",
+            "parameters": [],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get Airports V2 Airports  Get",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/AirportWithoutGates"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/airports/{code}/gates",
+            "summary": "Get Gates",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Code",
+                        "type": "string"
+                    },
+                    "name": "code",
+                    "in": "path"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get Gates V2 Airports  Code  Gates Get",
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/airports/{code}/shops",
+            "summary": "Get Airport Shops",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Code",
+                        "type": "string"
+                    },
+                    "name": "code",
+                    "in": "path"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get Airport Shops V2 Airports  Code  Shops Get",
+                                "type": "array",
+                                "items": {
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/credits/",
+            "summary": "Get the credit account details for the specified group.",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreditAccountOut"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "POST",
+            "path": "/v2/credits/transfer",
+            "summary": "Create a credit transfer",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/TransferIn"
+                        }
+                    }
+                },
+                "required": true
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreditTransferOut"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "PUT",
+            "path": "/v2/credits/transfer/{transfer_id}/approve",
+            "summary": "Approve a credit transfer",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Transfer Id",
+                        "type": "string"
+                    },
+                    "name": "transfer_id",
+                    "in": "path"
+                },
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/TransferApproved"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/ffm/",
+            "summary": "Get All",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ModelOut"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "POST",
+            "path": "/v2/ffm/",
+            "summary": "Create",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/FFMRedemption"
+                        }
+                    }
+                },
+                "required": true
+            },
+            "responses": {
+                "201": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Create V2 Ffm  Post",
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "DELETE",
+            "path": "/v2/ffm/{redemption_code}",
+            "summary": "Delete",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Redemption Code",
+                        "type": "string"
+                    },
+                    "name": "redemption_code",
+                    "in": "path"
+                },
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "204": {
+                    "description": "Successful Response"
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "POST",
+            "path": "/v2/ffm/redeem/{redemption_code}",
+            "summary": "Redeem",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Redemption Code",
+                        "type": "string"
+                    },
+                    "name": "redemption_code",
+                    "in": "path"
+                },
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "202": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ModelOut"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/flights/scheduled",
+            "summary": "Get Scheduled",
+            "parameters": [
+                {
+                    "required": false,
+                    "schema": {
+                        "title": "Type",
+                        "enum": [
+                            "public",
+                            "charter"
+                        ],
+                        "type": "string"
+                    },
+                    "name": "type",
+                    "in": "query"
+                },
+                {
+                    "required": false,
+                    "schema": {
+                        "title": "Limit",
+                        "type": "integer",
+                        "default": 50
+                    },
+                    "name": "limit",
+                    "in": "query"
+                },
+                {
+                    "required": false,
+                    "schema": {
+                        "title": "Skip",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "name": "skip",
+                    "in": "query"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get Scheduled V2 Flights Scheduled Get",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Flight"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/flights/history",
+            "summary": "Get History",
+            "parameters": [
+                {
+                    "required": false,
+                    "schema": {
+                        "title": "Type",
+                        "enum": [
+                            "public",
+                            "charter"
+                        ],
+                        "type": "string"
+                    },
+                    "name": "type",
+                    "in": "query"
+                },
+                {
+                    "required": false,
+                    "schema": {
+                        "title": "Limit",
+                        "type": "integer",
+                        "default": 50
+                    },
+                    "name": "limit",
+                    "in": "query"
+                },
+                {
+                    "required": false,
+                    "schema": {
+                        "title": "Skip",
+                        "type": "integer",
+                        "default": 0
+                    },
+                    "name": "skip",
+                    "in": "query"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get History V2 Flights History Get",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/Flight"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/flights/{flight_id}",
+            "summary": "Get Flight",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Flight Id",
+                        "type": "string"
+                    },
+                    "name": "flight_id",
+                    "in": "path"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/FlightOut"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/flights/status/{flight_id}",
+            "summary": "Get Flight Status",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Flight Id",
+                        "type": "string"
+                    },
+                    "name": "flight_id",
+                    "in": "path"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get Flight Status V2 Flights Status  Flight Id  Get",
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "GET",
+            "path": "/v2/integrations/",
+            "summary": "Get integration configs for the users group",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Get V2 Integrations  Get",
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/IntegrationConfig"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "method": "PATCH",
+            "path": "/v2/integrations/{integration_id}",
+            "summary": "Update a group integration",
+            "parameters": [
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "Integration Id",
+                        "type": "string"
+                    },
+                    "name": "integration_id",
+                    "in": "path"
+                },
+                {
+                    "required": true,
+                    "schema": {
+                        "title": "X-Group-Id",
+                        "type": "string"
+                    },
+                    "name": "x-group-id",
+                    "in": "header"
+                }
+            ],
+            "requestBody": {},
+            "responses": {
+                "200": {
+                    "description": "Successful Response",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "title": "Response Update V2 Integrations  Integration Id  Patch",
+                                "type": "object",
+                                "additionalProperties": {
+                                    "type": "boolean"
+                                }
+                            }
+                        }
+                    }
+                },
+                "422": {
+                    "description": "Validation Error",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/HTTPValidationError"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "timestamp": "2025-04-13T19:08:42.581585",
+    "base_url": "https://victim.com"
+}

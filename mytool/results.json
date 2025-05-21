@@ -1,0 +1,1166 @@
+[
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/auth/signup",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'DELETE' is not supported.\",\"instance\":\"/identity/api/auth/signup\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/auth/signup",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PATCH' is not supported.\",\"instance\":\"/identity/api/auth/signup\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/auth/login",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PATCH' is not supported.\",\"instance\":\"/identity/api/auth/login\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/auth/forget-password",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PUT' is not supported.\",\"instance\":\"/identity/api/auth/forget-password\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/auth/login",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PUT' is not supported.\",\"instance\":\"/identity/api/auth/login\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/auth/login",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'DELETE' is not supported.\",\"instance\":\"/identity/api/auth/login\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/auth/signup",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PUT' is not supported.\",\"instance\":\"/identity/api/auth/signup\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/auth/v3/check-otp",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'DELETE' is not supported.\",\"instance\":\"/identity/api/auth/v3/check-otp\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/auth/forget-password",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PATCH' is not supported.\",\"instance\":\"/identity/api/auth/forget-password\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/auth/v3/check-otp",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PATCH' is not supported.\",\"instance\":\"/identity/api/auth/v3/check-otp\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/auth/v3/check-otp",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PUT' is not supported.\",\"instance\":\"/identity/api/auth/v3/check-otp\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/auth/forget-password",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'DELETE' is not supported.\",\"instance\":\"/identity/api/auth/forget-password\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/auth/v3/check-otp",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'GET' is not supported.\",\"instance\":\"/identity/api/auth/v3/check-otp\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/auth/v2/check-otp",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'GET' is not supported.\",\"instance\":\"/identity/api/auth/v2/check-otp\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/auth/v3/check-otp",
+    "status": 500,
+    "content": "User was not found for parameters {userEmail=null}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/auth/v4.0/user/login-with-token",
+    "status": 400,
+    "content": "{\"message\":\"Missing data. Field is null: token\",\"status\":400}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/auth/v2/check-otp",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PATCH' is not supported.\",\"instance\":\"/identity/api/auth/v2/check-otp\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/auth/v2/check-otp",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'DELETE' is not supported.\",\"instance\":\"/identity/api/auth/v2/check-otp\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/auth/v2/check-otp",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PUT' is not supported.\",\"instance\":\"/identity/api/auth/v2/check-otp\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/auth/v2.7/user/login-with-token",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'DELETE' is not supported.\",\"instance\":\"/identity/api/auth/v2.7/user/login-with-token\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/auth/signup",
+    "status": 403,
+    "content": "{\"message\":\"Email already registered! Email: test@example.com\",\"status\":403}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/auth/v2/check-otp",
+    "status": 500,
+    "content": "User was not found for parameters {userEmail=null}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/auth/v4.0/user/login-with-token",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PATCH' is not supported.\",\"instance\":\"/identity/api/auth/v4.0/user/login-with-token\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/auth/v4.0/user/login-with-token",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'DELETE' is not supported.\",\"instance\":\"/identity/api/auth/v4.0/user/login-with-token\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/auth/v4.0/user/login-with-token",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PUT' is not supported.\",\"instance\":\"/identity/api/auth/v4.0/user/login-with-token\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/auth/v2.7/user/login-with-token",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PUT' is not supported.\",\"instance\":\"/identity/api/auth/v2.7/user/login-with-token\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/auth/v2.7/user/login-with-token",
+    "status": 400,
+    "content": "{\"message\":\"Validation failed\",\"details\":\"org.springframework.validation.BeanPropertyBindingResult: 1 errors\\nField error in object 'loginWithEmailToken' on field 'token': rejected value [null]; codes"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/user/reset-password",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/user/reset-password",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/user/reset-password",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/auth/v2.7/user/login-with-token",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PATCH' is not supported.\",\"instance\":\"/identity/api/auth/v2.7/user/login-with-token\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/user/reset-password",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/user/reset-password",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/user/change-email",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/user/change-email",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/auth/forget-password",
+    "status": 200,
+    "content": "{\"message\":\"OTP Sent on the provided email, test@example.com\",\"status\":200}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/user/change-email",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/user/change-email",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/user/verify-email-token",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/user/dashboard",
+    "status": 404,
+    "content": "{\"message\":\"Given Email is not registered! \",\"status\":404}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/user/verify-email-token",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/user/verify-email-token",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/user/verify-email-token",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/user/verify-email-token",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/user/pictures",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/user/pictures",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/user/dashboard",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PATCH' is not supported.\",\"instance\":\"/identity/api/v2/user/dashboard\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/user/dashboard",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'POST' is not supported.\",\"instance\":\"/identity/api/v2/user/dashboard\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/user/dashboard",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'DELETE' is not supported.\",\"instance\":\"/identity/api/v2/user/dashboard\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/user/change-email",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/user/dashboard",
+    "status": 405,
+    "content": "{\"type\":\"about:blank\",\"title\":\"Method Not Allowed\",\"status\":405,\"detail\":\"Method 'PUT' is not supported.\",\"instance\":\"/identity/api/v2/user/dashboard\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/user/pictures",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/user/pictures",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/user/pictures",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/user/videos",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/user/videos",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/user/videos",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/user/videos",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/user/videos/1",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/user/videos",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/user/videos/1",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/user/videos/1",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/user/videos/convert_video",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/user/videos/1",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/user/videos/convert_video",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/user/videos/convert_video",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/user/videos/convert_video",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/user/videos/convert_video",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/admin/videos/1",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/user/videos/1",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/vehicles",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/vehicles",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/admin/videos/1",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/admin/videos/1",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/admin/videos/1",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/vehicles",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/admin/videos/1",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/vehicles",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/add_vehicle",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/vehicles",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/add_vehicle",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/add_vehicle",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/1/location",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/add_vehicle",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/1/location",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/1/location",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/add_vehicle",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/resend_email",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/community/api/v2/community/posts/1",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/1/location",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/resend_email",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/resend_email",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/resend_email",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/1/location",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/identity/api/v2/vehicle/resend_email",
+    "status": 401,
+    "content": "CRAPIResponse(message=Invalid Token, status=401)\n"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/community/api/v2/community/posts/1",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/community/api/v2/community/posts/1",
+    "status": 401,
+    "content": "{\"error\":\"Unauthorized\"}\n"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/community/api/v2/community/posts/1",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/community/api/v2/community/posts/1",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/community/api/v2/community/posts",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/community/api/v2/community/posts/1/comment",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/community/api/v2/community/posts/1/comment",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/community/api/v2/community/posts",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/community/api/v2/community/posts",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/community/api/v2/community/posts",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/community/api/v2/community/posts/1/comment",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/community/api/v2/community/posts/recent",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/community/api/v2/community/posts/recent",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/community/api/v2/community/posts/1/comment",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/community/api/v2/community/posts/recent",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/community/api/v2/community/posts/recent",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/community/api/v2/coupon/new-coupon",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/community/api/v2/coupon/new-coupon",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/community/api/v2/coupon/validate-coupon",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/community/api/v2/coupon/new-coupon",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/community/api/v2/coupon/new-coupon",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/community/api/v2/coupon/validate-coupon",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/community/api/v2/coupon/validate-coupon",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/community/api/v2/coupon/validate-coupon",
+    "status": 405,
+    "content": ""
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/shop/products",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/shop/products",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/shop/products",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/shop/products",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/shop/products",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/shop/orders",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/shop/orders",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/shop/orders",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/shop/orders",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/shop/orders/1",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/shop/orders/1",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/community/api/v2/community/posts/1/comment",
+    "status": 401,
+    "content": "{\"error\":\"Unauthorized\"}\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/community/api/v2/community/posts",
+    "status": 401,
+    "content": "{\"error\":\"Unauthorized\"}\n"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/community/api/v2/community/posts/recent",
+    "status": 401,
+    "content": "{\"error\":\"Unauthorized\"}\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/community/api/v2/coupon/new-coupon",
+    "status": 401,
+    "content": "{\"error\":\"Unauthorized\"}\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/community/api/v2/coupon/validate-coupon",
+    "status": 401,
+    "content": "{\"error\":\"Unauthorized\"}\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/identity/api/auth/login",
+    "status": 401,
+    "content": "{\"token\":null,\"type\":\"\",\"message\":\"Invalid Credentials\",\"mfaRequired\":false}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/shop/orders/1",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/shop/orders/1",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/shop/orders/all",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/shop/orders/all",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/shop/orders/all",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/shop/orders/all",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"POST\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/shop/orders/all",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/shop/orders/return_order",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/shop/orders/return_order",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"GET\\\" not allowed.\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/shop/orders/return_order",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/shop/orders/return_order",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/shop/orders/return_order",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/shop/apply_coupon",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/shop/orders/1",
+    "status": 200,
+    "content": "{\"order\":{\"id\":1,\"user\":{\"email\":\"adam007@example.com\",\"number\":\"9876895423\"},\"product\":{\"id\":1,\"name\":\"Seat\",\"price\":\"10.00\",\"image_url\":\"images/seat.svg\"},\"quantity\":2,\"status\":\"delivered\",\"transact"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/shop/apply_coupon",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"GET\\\" not allowed.\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/shop/apply_coupon",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/shop/apply_coupon",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/shop/return_qr_code",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"POST\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/shop/apply_coupon",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/shop/return_qr_code",
+    "status": 200,
+    "content": "\ufffdPNG\r\n\u001a\n\u0000\u0000\u0000\rIHDR\u0000\u0000\u0004\ufffd\u0000\u0000\u0004\ufffd\b\u0002\u0000\u0000\u0000\ufffdNc\ufffd\u0000\u0000\u0000\u0006bKGD\u0000\ufffd\u0000\ufffd\u0000\ufffd\ufffd\ufffd\ufffd\ufffd\u0000\u0000\u001b\ufffdIDATx\ufffd\ufffd\u0641\ufffd\ufffd8\u0012\u0000\ufffd\ufffd\ufffd\ufffdw\ufffd\u0381\ufffdb\ufffd\u035c\u0016#\u001cPI\"5\ufffd\ufffd\ufffd\ufffd\ufffd\u0000\u0000\u0000\ufffd\ufffdo=\u0000\u0000\u0000\ufffd\ufffd\u0019\u0000\u0000@L\ufffd\u0001\u0000\u0000\u0104\u0019\u0000\u0000@L\ufffd\u0001\u0000\u0000\u0104\u0019\u0000\u0000@L\ufffd\u0001\u0000\u0000\u0104\u0019\u0000\u0000@L\ufffd\u0001\u0000\u0000\u0104\u0019\u0000\u0000@L\ufffd\u0001\u0000\u0000\u0104\u0019\u0000\u0000@L\ufffd\u0001\u0000\u0000\u0104\u0019\u0000\u0000@L\ufffd\u0001\u0000\u0000\u0104\u0019\u0000\u0000@L\ufffd\u0001\u0000\u0000\u0104\u0019\u0000\u0000@L\ufffd\u0001\u0000\u0000\u0104\u0019\u0000\u0000@L\ufffd\u0001"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/shop/return_qr_code",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/shop/return_qr_code",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/shop/return_qr_code",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/management/users/all",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/management/users/all",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"POST\\\" not allowed.\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/management/users/all",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/management/users/all",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/management/users/all",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/mechanic/",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"POST\\\" not allowed.\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/mechanic/",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/mechanic/",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/mechanic/",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/merchant/contact_mechanic",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"GET\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/mechanic/",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/merchant/contact_mechanic",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/merchant/contact_mechanic",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/merchant/contact_mechanic",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/merchant/contact_mechanic",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/mechanic/receive_report",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"POST\\\" not allowed.\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/mechanic/receive_report",
+    "status": 400,
+    "content": "{\"mechanic_code\":[\"This field is required.\"],\"problem_details\":[\"This field is required.\"],\"vin\":[\"This field is required.\"]}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/mechanic/receive_report",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/mechanic/receive_report",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/mechanic/receive_report",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/mechanic/mechanic_report",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/mechanic/mechanic_report",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/mechanic/mechanic_report",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"POST\\\" not allowed.\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/mechanic/mechanic_report",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/mechanic/mechanic_report",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/mechanic/service_requests",
+    "status": 401,
+    "content": "{\"message\":\"JWT Token required!\"}"
+  },
+  {
+    "method": "GET",
+    "url": "http://localhost:8888/workshop/api/shop/orders",
+    "status": 500,
+    "content": "\n<!doctype html>\n<html lang=\"en\">\n<head>\n  <title>Server Error (500)</title>\n</head>\n<body>\n  <h1>Server Error (500)</h1><p></p>\n</body>\n</html>\n"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/mechanic/service_requests",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"POST\\\" not allowed.\"}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/mechanic/service_requests",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/mechanic/service_requests",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/mechanic/service_requests",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  },
+  {
+    "method": "POST",
+    "url": "http://localhost:8888/workshop/api/mechanic/signup",
+    "status": 400,
+    "content": "{\"mechanic_code\":[\"This field is required.\"]}"
+  },
+  {
+    "method": "DELETE",
+    "url": "http://localhost:8888/workshop/api/mechanic/signup",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"DELETE\\\" not allowed.\"}"
+  },
+  {
+    "method": "PUT",
+    "url": "http://localhost:8888/workshop/api/mechanic/signup",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PUT\\\" not allowed.\"}"
+  },
+  {
+    "method": "PATCH",
+    "url": "http://localhost:8888/workshop/api/mechanic/signup",
+    "status": 405,
+    "content": "{\"detail\":\"Method \\\"PATCH\\\" not allowed.\"}"
+  }
+]

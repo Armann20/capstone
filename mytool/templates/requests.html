@@ -1,0 +1,1387 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ filename }} - API Testing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Add CSRF Token Meta Tag -->
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #3b82f6;
+            --surface: #1e293b;
+            --text-primary: #f8fafc;
+        }
+
+        body {
+            background: #0f172a;
+            color: var(--text-primary);
+            font-family: 'Inter', system-ui;
+        }
+
+        .endpoint-tree {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1rem;
+            height: calc(100vh - 200px);
+            overflow-y: auto;
+        }
+
+        .request-panel {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+        }
+
+        .response-panel {
+            background: var(--surface);
+            border-radius: 12px;
+            padding: 1.5rem;
+            height: 400px; /* Fixed height */
+            overflow-y: auto;
+            margin-top: 1rem;
+        }
+
+        /* Add this to ensure proper container heights */
+        .reqresp .row {
+            display: flex;
+            flex-direction: column;
+            height: calc(100vh - 120px);
+        }
+
+        #responseContainer {
+            flex: 1 1 auto;
+            min-height: 300px;
+            max-height: 60vh;
+            overflow: hidden;
+            margin-top: 1rem;
+            background: var(--surface);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+        }
+        .tab-content {
+            flex: 1;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .tab-pane {
+            height: 100%;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+        .method-badge {
+            width: 80px;
+            text-align: center;
+            border-radius: 6px;
+            font-weight: 600;
+            font-family: 'Fira Code', monospace;
+        }
+
+        .method-GET { background: #22c55e; }
+        .method-POST { background: #3b82f6; }
+        .method-PUT { background: #f59e0b; }
+        .method-DELETE { background: #ef4444; }
+
+        .param-row {
+            transition: all 0.2s;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+
+        .tree-node {
+            padding-left: 1rem;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            margin: 0.5rem 0;
+        }
+
+        .cm-editor { 
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            height: 200px;
+        }
+
+        /* Syntax highlighting colors */
+        .string { color: #a5d6a7; }
+        .number { color: #90caf9; }
+        .boolean { color: #ffab91; }
+        .null { color: #ce93d8; }
+        /* Add to existing styles */
+.pre-wrap {
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.string { color: #a5d6a7; }
+.number { color: #90caf9; }
+.boolean { color: #ffab91; }
+.null { color: #ce93d8; }
+.key { color: #f48fb1; }
+
+.nav-tabs .nav-link {
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: #94a3b8;
+}
+
+.nav-tabs .nav-link.active {
+    background: transparent;
+    color: #f8fafc;
+    border-bottom-color: #6366f1;
+}
+
+.table-dark td {
+    max-width: 400px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.reqresp{
+    width: -webkit-fit-content;
+}
+.params{
+    width: -webkit-fit-content;
+}
+.reqresp .row {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 160px); /* Adjust for better height management */
+}
+
+#responseContainer {
+    flex: 1;
+    min-height: 300px;
+    overflow: hidden;
+    background: var(--surface);
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Request panel adjustments */
+.request-panel {
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+/* Response panel improvements */
+.response-card {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: #1e293b;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.response-content {
+    flex: 1;
+    overflow: auto;
+    padding: 1rem;
+}
+
+/* Tab styling */
+.nav-tabs {
+    flex-shrink: 0;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem 1rem 0;
+}
+
+/* Syntax highlighting container */
+.pre-wrap {
+    white-space: pre-wrap;
+    word-break: break-word;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    margin: 0;
+    flex: 1;
+}
+
+/* Headers table */
+.headers-table {
+    background: transparent;
+    margin: 0;
+}
+
+.headers-table td {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Parameter inputs */
+.params-container {
+    position: fixed;
+    right: 1rem;
+    bottom: 1rem;
+    width: 300px;
+    background: var(--surface);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-height: 80vh;
+    overflow-y: auto;
+}
+    </style>
+</head>
+<body>
+    <div class="container-fluid vh-100">
+        <div class="row h-100">
+            <!-- Left Sidebar - Endpoints -->
+            <div class="col-md-3 border-end border-dark p-3">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="fw-bold">{{ filename }}</h3>
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div class="d-flex gap-2">
+                            <a href="{{ url_for('vulnerability_dashboard', spec_name=filename|first_word) }}" class="btn btn-sm btn-warning">
+                                <i class="bi bi-shield-exclamation"></i>
+                                Security Dashboard
+                            </a>
+                            <a href="/" class="btn btn-sm btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="endpoint-tree">
+                    {% macro render_node(node, path) %}
+                        <div class="tree-node">
+                            {% if node.methods %}
+                                <div class="d-flex flex-column gap-2 mb-3">
+                                    {% for method in ['GET','POST','PUT','DELETE','PATCH','HEAD','OPTIONS','TRACE'] %}
+                                        {% if method in node.methods %}
+                                            <div class="d-flex align-items-center gap-2 endpoint-item"
+                                                 data-method="{{ method }}"
+                                                 data-path="{{ path or '/' }}">
+                                                <span class="method-badge method-{{ method }}">{{ method }}</span>
+                                                <span class="text-muted">{{ path or '/' }}</span>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                            {% for segment, child in node.children.items() %}
+                                <div class="mb-2">
+                                    <div class="text-muted fw-bold mb-2">/{{ segment }}</div>
+                                    {{ render_node(child, path + '/' + segment if path else '/' + segment) }}
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endmacro %}
+                    {{ render_node(hierarchy, '') }}
+                </div>
+            </div>
+
+            <!-- Main Content - Request/Response -->
+            <div class="col-md-9 p-4 reqresp">
+                <div class="row g-4 h-100">
+                    <!-- Request Configuration -->
+                    <div class="col-lg-12">
+                        <div class="request-panel">
+                            <div class="d-flex gap-2 mb-3">
+                                <select class="form-select" id="httpMethod" style="flex: 0 0 120px;">
+                                    <option>GET</option>
+                                    <option>POST</option>
+                                    <option>PUT</option>
+                                    <option>DELETE</option>
+                                    <option>PATCH</option>
+                                    <option>HEAD</option>
+                                    <option>OPTIONS</option>
+                                    <option>TRACE</option>
+                                </select>
+                                <input type="hidden" id="baseUrl" value="{{ base_url }}">
+                                <input type="text" class="form-control" id="requestUrl" 
+                                    placeholder="Enter URL" value="{{ base_url }}">
+                                <button class="btn btn-primary" onclick="sendRequest()">
+                                    <i class="bi bi-send"></i> Send
+                                </button>
+                            </div>
+
+                            <!-- Quick Action Buttons -->
+                            <div class="d-flex gap-2 mb-3">
+                                <button class="btn btn-sm btn-outline-secondary" onclick="setJsonContentType()">
+                                    <i class="bi bi-filetype-json"></i> JSON
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="setFormUrlEncoded()">
+                                    <i class="bi bi-input-cursor-text"></i> Form
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="addBearerToken()">
+                                    <i class="bi bi-shield-lock"></i> Auth
+                                </button>
+                                <button class="btn btn-sm btn-outline-secondary" onclick="formatRequestBody()">
+                                    <i class="bi bi-code-square"></i> Format
+                                </button>
+                            </div>
+
+                            <!-- Templates Dropdown -->
+                            <div class="dropdown mb-3">
+                                <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-collection"></i> Templates
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="#" onclick="loadRequestTemplate('create_user')">Create User</a></li>
+                                    <li><a class="dropdown-item" href="#" onclick="loadRequestTemplate('get_items')">Get Items</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- Dynamic Parameters Section -->
+                            <div id="parametersContainer">
+                                <!-- Path Parameters -->
+                                <div class="card mb-3" id="pathParamsCard" style="display: none;">
+                                    <div class="card-header bg-dark text-white">
+                                        Path Parameters
+                                    </div>
+                                    <div class="card-body" id="pathParams"></div>
+                                </div>
+
+                                <!-- Query Parameters -->
+                                <div class="card mb-3" id="queryParamsCard" style="display: none;">
+                                    <div class="card-header bg-dark text-white">
+                                        Query Parameters
+                                    </div>
+                                    <div class="card-body" id="queryParams"></div>
+                                </div>
+
+                                <!-- Headers -->
+                                <div class="card mb-3" id="headersCard">
+                                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                                        Headers
+                                        <div>
+                                            <button class="btn btn-sm btn-success me-2" onclick="addHeader()">
+                                                <i class="bi bi-plus"></i> Add Header
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-success" onclick="saveHeaders()">
+                                                <i class="bi bi-save"></i> Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="card-body" id="headers">
+                                        <!-- Default headers similar to Postman -->
+                                        <div class="param-row mb-2 d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control" placeholder="Header name" value="Accept" readonly>
+                                            <input type="text" class="form-control" placeholder="Header value" value="*/*">
+                                            <button class="btn btn-sm btn-outline-danger" onclick="removeParamRow(this)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                        <div class="param-row mb-2 d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control" placeholder="Header name" value="Accept-Encoding" readonly>
+                                            <input type="text" class="form-control" placeholder="Header value" value="gzip, deflate, br">
+                                            <button class="btn btn-sm btn-outline-danger" onclick="removeParamRow(this)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                        <div class="param-row mb-2 d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control" placeholder="Header name" value="Connection" readonly>
+                                            <input type="text" class="form-control" placeholder="Header value" value="keep-alive">
+                                            <button class="btn btn-sm btn-outline-danger" onclick="removeParamRow(this)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                        <div class="param-row mb-2 d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control" placeholder="Header name" value="Host">
+                                            <input type="text" class="form-control" placeholder="Header value" value="">
+                                            <button class="btn btn-sm btn-outline-danger" onclick="removeParamRow(this)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                        <div class="param-row mb-2 d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control" placeholder="Header name" value="User-Agent" readonly>
+                                            <input type="text" class="form-control" placeholder="Header value" value="API-Tester/1.0">
+                                            <button class="btn btn-sm btn-outline-danger" onclick="removeParamRow(this)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                        <div class="param-row mb-2 d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control" placeholder="Header name" value="Cache-Control" readonly>
+                                            <input type="text" class="form-control" placeholder="Header value" value="no-cache">
+                                            <button class="btn btn-sm btn-outline-danger" onclick="removeParamRow(this)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                        <div class="param-row mb-2 d-flex align-items-center gap-2">
+                                            <input type="text" class="form-control" placeholder="Header name" value="Content-Type">
+                                            <input type="text" class="form-control" placeholder="Header value" value="application/json">
+                                            <button class="btn btn-sm btn-outline-danger" onclick="removeParamRow(this)">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Timeout Control -->
+                            <div class="input-group mb-3" style="width: 200px;">
+                                <span class="input-group-text">Timeout</span>
+                                <select class="form-select" id="requestTimeout">
+                                    <option value="5000">5s</option>
+                                    <option value="10000">10s</option>
+                                    <option value="30000">30s</option>
+                                    <option value="0" selected>No timeout</option>
+                                </select>
+                            </div>
+
+                            <!-- Request Body -->
+                            <div class="mb-4">
+                                <h6 class="mb-2">Request Body</h6>
+                                <textarea class="form-control" id="requestBody" rows="6"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-12" id="responseContainer" style="flex: 1; overflow-y: auto;">
+
+
+                    </div>
+                    <!-- Add this section below the endpoint tree in the left sidebar -->
+                    
+
+
+
+                    <!-- Response Panel -->
+                    <!-- <div class="col-lg-6">
+                        <form id="requestForm" method="POST" action="{{ url_for('send_request') }}">
+                            {{ form.hidden_tag() }}
+                            
+                            <div class="mb-3">
+                                {{ form.method(class="form-select") }}
+                                {{ form.url(class="form-control") }}
+                            </div>
+
+                         
+                            <div class="card mb-3">
+                                <div class="card-header">Path Parameters</div>
+                                <div class="card-body" id="pathParams">
+                                    {% for param in form.path_params %}
+                                        <div class="param-group mb-2">
+                                            {{ param.form.name(class="form-control") }}
+                                            {{ param.form.value(class="form-control") }}
+                                            {{ param.form.param_type(class="form-select") }}
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+
+                         
+                            <div class="card mb-3">
+                                <div class="card-header">Query Parameters</div>
+                                <div class="card-body" id="queryParams">
+                                   
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">Send Request</button>
+                        </form>
+                    </div> -->
+
+                </div>
+            </div>
+            <div class="mt-4 params">
+                <h4>API Parameters</h4>
+                <button class="btn btn-sm btn-outline-success" onclick="saveParameters()">
+                    <i class="bi bi-save"></i> Save Parameters
+                </button>
+                <div id="parameterInputs" class="d-flex flex-column gap-2">
+                    {% if spec_data.unique_params %}
+                        {% for param in spec_data.unique_params %}
+                        <div class="param-input-group">
+                            <label class="form-label small mb-1">{{ param }}</label>
+                            <div class="d-flex gap-2">
+                                <input type="text" 
+                                       class="form-control form-control-sm" 
+                                       data-param="{{ param }}"
+                                       placeholder="Enter value for {{ param }}">
+                                <select class="form-select form-select-sm param-location" style="flex: 0 0 100px;">
+                                    <option value="auto">Auto</option>
+                                    <option value="path">Path</option>
+                                    <option value="query">Query</option>
+                                    <option value="body">Body</option>
+                                </select>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-muted">No parameters found for this API</div>
+                    {% endif %}
+                </div>
+            </div>
+            <!-- Add to the API Parameters section header -->
+            
+
+<!-- Add to the Headers card header -->
+        </div>
+        
+    </div>
+    <!-- <div class="col-md-12 mt-4">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="tab" href="#endpoints">Endpoints</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="tab" href="#vulnerabilities">Security Report</a>
+            </li>
+        </ul>
+    
+        <div class="tab-content mt-3">
+          
+            <div class="tab-pane active" id="endpoints">
+               
+            </div>
+    
+      
+            <div class="tab-pane" id="vulnerabilities">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="list-group">
+                            {% for vuln_group in vulnerabilities %}
+                            <a href="#vuln-{{ loop.index }}" 
+                               class="list-group-item list-group-item-action 
+                                      {% if vuln_group.findings %}list-group-item-danger{% endif %}">
+                               {{ vuln_group.method }} {{ vuln_group.path }}
+                               <span class="badge bg-danger float-end">
+                                   {{ vuln_group.findings|length }}
+                               </span>
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+    
+                    <div class="col-md-9">
+                        {% for vuln_group in vulnerabilities %}
+                        <div class="vuln-section mb-5" id="vuln-{{ loop.index }}">
+                            <h4 class="mb-3">
+                                {{ vuln_group.method }} {{ vuln_group.path }}
+                                {% if vuln_group.findings %}
+                                <span class="badge bg-danger">Vulnerable</span>
+                                {% else %}
+                                <span class="badge bg-success">Secure</span>
+                                {% endif %}
+                            </h4>
+    
+                            {% for finding in vuln_group.findings %}
+                            <div class="card mb-3 border-danger">
+                                <div class="card-header bg-danger text-white">
+                                    {{ finding.type|upper }} VULNERABILITY 
+                                    <span class="badge bg-light text-dark float-end">
+                                        {{ finding.severity }}
+                                    </span>
+                                </div>
+                                <div class="card-body">
+                                    {% if finding.type == 'data_exposure' %}
+                                        <h5>Sensitive Data Found:</h5>
+                                        <ul class="list-group">
+                                            {% for issue in finding.details %}
+                                            <li class="list-group-item">
+                                                <div class="fw-bold">{{ issue.reason }}</div>
+                                                <code class="d-block mt-2 p-2 bg-dark text-white">
+                                                    {{ issue.response_sample }}
+                                                </code>
+                                                <small class="text-muted">Path: {{ issue.path }}</small>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    
+                                    {% elif finding.type == 'injection' %}
+                                        <h5>Injection Points Found:</h5>
+                                        <div class="table-responsive">
+                                            <table class="table table-dark">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Location</th>
+                                                        <th>Parameter</th>
+                                                        <th>Payload</th>
+                                                        <th>Indicators</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% for detail in finding.details %}
+                                                    <tr>
+                                                        <td>{{ detail.location }}</td>
+                                                        <td>{{ detail.parameter }}</td>
+                                                        <td><code>{{ detail.payload }}</code></td>
+                                                        <td>
+                                                            <ul class="list-unstyled">
+                                                                {% for indicator in detail.indicators %}
+                                                                <li class="text-danger">• {{ indicator }}</li>
+                                                                {% endfor %}
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    
+    <!-- Add scrollspy functionality -->
+    <style>
+        .vuln-section {
+            scroll-margin-top: 80px;
+        }
+        
+        .list-group-item-danger {
+            transition: all 0.3s;
+        }
+        
+        .list-group-item-danger:hover {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .table-dark th {
+            background: #1a1a1a;
+        }
+        
+        code {
+            padding: 2px 4px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.1);
+        }
+        /* Add this to your existing styles */
+        .response-panel {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+.response-panel .nav-tabs {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.response-panel .nav-link {
+    color: var(--text-secondary);
+    border: none;
+    padding: 0.75rem 1.25rem;
+}
+
+.response-panel .nav-link.active {
+    color: var(--text-primary);
+    background: transparent;
+    border-bottom: 2px solid var(--primary);
+}
+
+.response-panel pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin-bottom: 0;
+    max-height: 500px;
+    overflow-y: auto;
+}
+
+.response-panel iframe {
+    background: white;
+    border-radius: 4px;
+}
+
+.table-dark {
+    background: rgba(0,0,0,0.2);
+}
+
+.table-dark th, .table-dark td {
+    border-color: rgba(255,255,255,0.1);
+}
+.param-input-group {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding: 0.75rem;
+}
+
+.param-input-group label {
+    font-size: 0.8rem;
+    color: #94a3b8;
+}
+
+.param-location {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add to existing script section
+function collectParameters() {
+    const params = {
+        path: {},
+        query: {},
+        body: {}
+    };
+
+    document.querySelectorAll('#parameterInputs .param-input-group').forEach(group => {
+        const input = group.querySelector('input');
+        const location = group.querySelector('.param-location').value;
+        const paramName = input.dataset.param;
+        const value = input.value.trim();
+
+        if (value) {
+            if (location === 'auto') {
+                // Auto-detect location
+                if (document.getElementById('requestUrl').value.includes(`{${paramName}}`)) {
+                    params.path[paramName] = value;
+                } else {
+                    params.query[paramName] = value;
+                }
+            } else {
+                params[location][paramName] = value;
+            }
+        }
+    });
+
+    return params;
+}
+
+function applyParameters() {
+    const params = collectParameters();
+    let url = document.getElementById('requestUrl').value;
+
+    // Apply path parameters
+    Object.entries(params.path).forEach(([name, value]) => {
+        url = url.replace(new RegExp(`{${name}}`, 'g'), encodeURIComponent(value));
+    });
+
+    // Apply query parameters
+    const queryParams = new URLSearchParams();
+    Object.entries(params.query).forEach(([name, value]) => {
+        queryParams.append(name, value);
+    });
+    
+    if (queryParams.toString()) {
+        url += (url.includes('?') ? '&' : '?') + queryParams.toString();
+    }
+
+    document.getElementById('requestUrl').value = url;
+
+    // Apply body parameters if JSON
+    const contentTypeHeader = Array.from(document.querySelectorAll('#headers input[placeholder="Header name"]'))
+        .find(input => input.value.toLowerCase() === 'content-type');
+    
+    if (contentTypeHeader && contentTypeHeader.nextElementSibling.value.includes('json')) {
+        try {
+            const currentBody = JSON.parse(document.getElementById('requestBody').value || '{}');
+            document.getElementById('requestBody').value = JSON.stringify({
+                ...currentBody,
+                ...params.body
+            }, null, 2);
+        } catch {
+            // If invalid JSON, start fresh
+            document.getElementById('requestBody').value = JSON.stringify(params.body, null, 2);
+        }
+    }
+}
+
+// Update sendRequest function to use parameters
+async function sendRequest() {
+    applyParameters(); // Add this line at the start of sendRequest
+    // Rest of existing sendRequest code...
+}
+        // Get the original base URL from the input at page load
+        document.querySelectorAll('.endpoint-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const method = item.dataset.method;
+                const path = item.dataset.path;
+                const baseUrl = document.getElementById('baseUrl').value;
+                console.log("Base URL:", baseUrl);
+                console.log("Clicked path:", path);
+
+                // Ensure proper slash concatenation
+                const updatedUrl = baseUrl.replace(/\/$/, '') + '/' + path.replace(/^\//, '');
+                console.log("Updated URL:", updatedUrl);
+
+                document.getElementById('httpMethod').value = method;
+                document.getElementById('requestUrl').value = updatedUrl;
+                clearParameters();
+            });
+        });
+    
+        async function sendRequest() {
+            applyParameters();
+    const method = document.getElementById('httpMethod').value;
+    const url = document.getElementById('requestUrl').value;
+    const body = document.getElementById('requestBody').value;
+    const spec_id = "{{ spec_id }}";
+
+    // Collect headers
+    const headers = {};
+    document.querySelectorAll('#headers .param-row').forEach(row => {
+        const nameInput = row.querySelector('input[placeholder="Header name"]');
+        const valueInput = row.querySelector('input[placeholder="Header value"]');
+        if (nameInput.value && valueInput.value) {
+            headers[nameInput.value] = valueInput.value;
+        }
+    });
+
+    try {
+        // Show loading state
+        const sendButton = document.querySelector('button[onclick="sendRequest()"]');
+        const originalButtonText = sendButton.innerHTML;
+        sendButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Sending...';
+        sendButton.disabled = true;
+
+        // Prepare request data
+        const requestData = {
+            method: method,
+            url: url,
+            headers: headers,
+            body: body,
+            spec_id: spec_id
+        };
+
+        // Send the request
+        const response = await fetch('/proxy-request', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(requestData)
+        });
+
+        // First check if we got any response at all
+        if (!response.ok) {
+            const errorText = await response.text();
+            throw new Error(`Server responded with status ${response.status}: ${errorText}`);
+        }
+
+        // Try to parse as JSON, but fall back to text if needed
+        let result;
+        try {
+            result = await response.json();
+        } catch (e) {
+            // If JSON parsing fails, get the raw text
+            const text = await response.text();
+            result = {
+                status: response.status,
+                body: text,
+                headers: Object.fromEntries(response.headers.entries()),
+                content_type: response.headers.get('Content-Type')
+            };
+        }
+
+        // Display the response
+        displayResponse(result);
+
+    } catch (error) {
+        showError(`Request failed: ${error.message}`);
+        console.error('Request error:', error);
+    } finally {
+        // Restore button state
+        const sendButton = document.querySelector('button[onclick="sendRequest()"]');
+        if (sendButton) {
+            sendButton.innerHTML = '<i class="bi bi-send"></i> Send';
+            sendButton.disabled = false;
+        }
+    }
+}
+
+function displayResponse(response) {
+    const container = document.getElementById('responseContainer');
+    container.innerHTML = `
+        <div class="response-card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <span class="badge bg-${response.status >= 400 ? 'danger' : 
+                                      response.status >= 300 ? 'warning' : 'success'}">
+                        ${response.status || 'No Status'}
+                    </span>
+                    <span class="ms-2">${response.time || ''}</span>
+                </div>
+                <div class="nav nav-tabs card-header-tabs">
+                    <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#bodyTab">
+                        Body
+                    </button>
+                    <button class="nav-link" data-bs-toggle="tab" data-bs-target="#headersTab">
+                        Headers
+                    </button>
+                </div>
+            </div>
+            
+            <div class="tab-content response-content">
+                <div class="tab-pane fade show active" id="bodyTab">
+                    ${this.formatResponseBody(response)}
+                </div>
+                <div class="tab-pane fade" id="headersTab">
+                    ${this.formatResponseHeaders(response)}
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Initialize Bootstrap tabs
+    new bootstrap.Tab(container.querySelector('.nav-link:first-child')).show();
+}
+function formatResponseBody(response) {
+    if (!response.body) return '<div class="text-muted p-3">No response body</div>';
+    
+    if (response.content_type?.includes('json')) {
+        try {
+            const json = typeof response.body === 'string' ? 
+                JSON.parse(response.body) : response.body;
+            return `<pre class="pre-wrap">${syntaxHighlight(json)}</pre>`;
+        } catch {
+            return `<pre class="pre-wrap">${response.body}</pre>`;
+        }
+    }
+    
+    if (response.content_type?.includes('html')) {
+        return `<iframe srcdoc="${response.body}" class="w-100 h-100 border-0"></iframe>`;
+    }
+    
+    return `<pre class="pre-wrap">${response.body}</pre>`;
+}
+
+function formatResponseHeaders(response) {
+    if (!response.headers) return '<div class="text-muted p-3">No headers received</div>';
+    
+    return `
+        <table class="table headers-table">
+            <tbody>
+                ${Object.entries(response.headers).map(([name, value]) => `
+                    <tr>
+                        <td class="text-nowrap">${name}</td>
+                        <td class="text-truncate">${value}</td>
+                    </tr>
+                `).join('')}
+            </tbody>
+        </table>
+    `;
+}
+function syntaxHighlight(json) {
+    if (typeof json !== 'string') {
+        json = JSON.stringify(json, null, 2);
+    }
+    
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, 
+        match => {
+            let cls = 'number';
+            if (/^"/.test(match)) {
+                cls = 'string';
+                if (/:$/.test(match)) {
+                    cls = 'key';
+                }
+            } else if (/true|false/.test(match)) {
+                cls = 'boolean';
+            } else if (/null/.test(match)) {
+                cls = 'null';
+            }
+            return `<span class="${cls}">${match}</span>`;
+        });
+}
+
+function showError(message) {
+    // Remove any existing error alerts
+    const existingAlerts = document.querySelectorAll('.alert.alert-danger');
+    existingAlerts.forEach(alert => alert.remove());
+
+    // Create new alert
+    const alert = document.createElement('div');
+    alert.className = 'alert alert-danger alert-dismissible fade show';
+    alert.innerHTML = `
+        <strong>Error:</strong> ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+
+    // Insert at the top of the main content
+    const mainContent = document.querySelector('.col-md-9');
+    if (mainContent) {
+        mainContent.insertBefore(alert, mainContent.firstChild);
+    } else {
+        document.body.insertBefore(alert, document.body.firstChild);
+    }
+
+    // Auto-dismiss after 5 seconds
+    setTimeout(() => {
+        const bsAlert = new bootstrap.Alert(alert);
+        bsAlert.close();
+    }, 5000);
+}
+    
+        function showAlert(message, type = 'info') {
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type} alert-dismissible fade show`;
+            alert.innerHTML = `
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            `;
+            document.querySelector('.container-fluid').prepend(alert);
+            setTimeout(() => alert.remove(), 5000);
+        }
+    
+        function syntaxHighlight(json) {
+            if (typeof json !== 'string') {
+                json = JSON.stringify(json, null, 2);
+            }
+            return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, 
+                match => {
+                    let cls = 'number';
+                    if (/^"/.test(match)) cls = 'string';
+                    else if (/true|false/.test(match)) cls = 'boolean';
+                    else if (/null/.test(match)) cls = 'null';
+                    return `<span class="${cls}">${match}</span>`;
+                });
+        }
+    
+        function addParameterInput(type, param) {
+            const container = document.getElementById(`${type}Params`);
+            const card = document.getElementById(`${type}ParamsCard`);
+            
+            const div = document.createElement('div');
+            div.className = 'mb-3';
+            div.innerHTML = `
+                <label class="form-label">
+                    ${param.name}
+                    ${param.required ? '<span class="text-danger">*</span>' : ''}
+                </label>
+                <input type="text" 
+                       class="form-control param-input"
+                       data-param-type="${type}"
+                       data-param-name="${param.name}"
+                       placeholder="${param.description || param.name}"
+                       ${param.required ? 'required' : ''}>
+                <small class="text-muted">${param.schema?.type || 'string'}</small>
+            `;
+            
+            container.appendChild(div);
+            card.style.display = 'block';
+        }
+    
+        function clearParameters() {
+            ['path', 'query', 'header'].forEach(type => {
+                const paramsEl = document.getElementById(`${type}Params`);
+                const cardEl = document.getElementById(`${type}ParamsCard`);
+
+                if (paramsEl) paramsEl.innerHTML = '';
+                if (cardEl) cardEl.style.display = 'none';
+            });
+        }
+
+        function addHeader() {
+            const headersContainer = document.getElementById('headers');
+            const newHeader = document.createElement('div');
+            newHeader.className = 'param-row mb-2 d-flex align-items-center gap-2';
+            newHeader.innerHTML = `
+                <input type="text" class="form-control" placeholder="Header name">
+                <input type="text" class="form-control" placeholder="Header value">
+                <button class="btn btn-sm btn-outline-danger" onclick="removeParamRow(this)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            `;
+            headersContainer.appendChild(newHeader);
+        }
+
+        function removeParamRow(button) {
+            const row = button.closest('.param-row');
+            if (row) {
+                row.remove();
+            }
+        }
+
+        // Auto-fill Host header based on URL
+        document.getElementById('requestUrl').addEventListener('change', function() {
+            try {
+                const url = new URL(this.value);
+                document.querySelectorAll('#headers input[value="Host"]').forEach(hostInput => {
+                    const valueInput = hostInput.parentElement.querySelector('input[placeholder="Header value"]');
+                    if (valueInput && !valueInput.value) {
+                        valueInput.value = url.host;
+                    }
+                });
+            } catch (e) {
+                console.log('Invalid URL', e);
+            }
+        });
+
+        // Content Type Presets
+        function setJsonContentType() {
+            setCommonHeaders('json');
+        }
+
+        function setFormUrlEncoded() {
+            setCommonHeaders('form');
+        }
+
+        function addBearerToken() {
+            const token = prompt("Enter your Bearer token:");
+            if (token) {
+                let exists = false;
+                document.querySelectorAll('#headers input[placeholder="Header name"]').forEach(input => {
+                    if (input.value.toLowerCase() === 'authorization') {
+                        input.parentElement.querySelector('input[placeholder="Header value"]').value = `Bearer ${token}`;
+                        exists = true;
+                    }
+                });
+                
+                if (!exists) {
+                    addHeaderWithValues('Authorization', `Bearer ${token}`);
+                }
+            }
+        }
+
+        function formatRequestBody() {
+            const bodyInput = document.getElementById('requestBody');
+            try {
+                const parsed = JSON.parse(bodyInput.value);
+                bodyInput.value = JSON.stringify(parsed, null, 2);
+            } catch (e) {
+                // Not JSON, leave as-is
+            }
+        }
+
+        function setCommonHeaders(type) {
+            const headers = {
+                json: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                xml: {
+                    'Content-Type': 'application/xml',
+                    'Accept': 'application/xml'
+                },
+                form: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            };
+            
+            if (headers[type]) {
+                document.getElementById('headers').innerHTML = '';
+                Object.entries(headers[type]).forEach(([name, value]) => {
+                    addHeaderWithValues(name, value);
+                });
+            }
+        }
+
+        function addHeaderWithValues(name, value) {
+            const headersContainer = document.getElementById('headers');
+            const newHeader = document.createElement('div');
+            newHeader.className = 'param-row mb-2 d-flex align-items-center gap-2';
+            newHeader.innerHTML = `
+                <input type="text" class="form-control" placeholder="Header name" value="${name}">
+                <input type="text" class="form-control" placeholder="Header value" value="${value}">
+                <button class="btn btn-sm btn-outline-danger" onclick="removeParamRow(this)">
+                    <i class="bi bi-trash"></i>
+                </button>
+            `;
+            headersContainer.appendChild(newHeader);
+        }
+
+        function loadRequestTemplate(templateName) {
+            const templates = {
+                'create_user': {
+                    method: 'POST',
+                    url: '{{ base_url }}/users',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username: "new_user",
+                        email: "user@example.com",
+                        password: "secure_password"
+                    }, null, 2)
+                },
+                'get_items': {
+                    method: 'GET',
+                    url: '{{ base_url }}/items'
+                }
+            };
+            
+            if (templates[templateName]) {
+                const template = templates[templateName];
+                document.getElementById('httpMethod').value = template.method;
+                document.getElementById('requestUrl').value = template.url;
+                document.getElementById('requestBody').value = template.body || '';
+                
+                document.getElementById('headers').innerHTML = '';
+                if (template.headers) {
+                    Object.entries(template.headers).forEach(([name, value]) => {
+                        addHeaderWithValues(name, value);
+                    });
+                }
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.key === 'Enter') {
+                sendRequest();
+            }
+            if (e.altKey && e.key === 'n') {
+                addHeader();
+            }
+        });
+        let na = '{{ spec_id }}'; // → 'crapi'
+        const raw = localStorage.getItem('endpoints');
+       // console.log(raw)
+       function findParams(obj, trail = []) {
+    if (Array.isArray(obj)) {
+      obj.forEach(item => findParams(item, trail));
+    }
+    else if (obj && typeof obj === 'object') {
+      for (const [key, val] of Object.entries(obj)) {
+        if (key === 'parameters' && Array.isArray(val)) {
+          console.log(`Found at ${trail.join('.') || 'root'}`, val);
+        } else {
+          findParams(val, trail.concat(key));
+        }
+      }
+    }
+  }
+  // Save/Load functionality with dynamic updates
+const STORAGE_KEY = 'api_tester_config';
+
+// Unified save function
+function saveConfig() {
+    const config = {
+        headers: getCurrentHeaders(),
+        parameters: getCurrentParameters()
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+    showAlert('Configuration saved successfully!', 'success');
+}
+
+// Save headers explicitly
+function saveHeaders() {
+    const config = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    config.headers = getCurrentHeaders();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+    showAlert('Headers saved successfully!', 'success');
+}
+
+// Save parameters explicitly
+function saveParameters() {
+    const config = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    config.parameters = getCurrentParameters();
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(config));
+    showAlert('Parameters saved successfully!', 'success');
+}
+
+// Get current headers state
+function getCurrentHeaders() {
+    return Array.from(document.querySelectorAll('#headers .param-row')).map(row => ({
+        name: row.querySelector('input[placeholder="Header name"]').value,
+        value: row.querySelector('input[placeholder="Header value"]').value
+    }));
+}
+
+// Get current parameters state
+function getCurrentParameters() {
+    return Array.from(document.querySelectorAll('#parameterInputs .param-input-group')).map(group => ({
+        name: group.querySelector('input').dataset.param,
+        value: group.querySelector('input').value,
+        location: group.querySelector('.param-location').value
+    }));
+}
+
+// Load configuration
+function loadConfig() {
+    const config = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+    loadHeaders(config.headers);
+    loadParameters(config.parameters);
+}
+
+// Load headers with dynamic updates
+function loadHeaders(headers) {
+    if (!headers) return;
+    
+    // Clear existing headers except defaults
+    const container = document.getElementById('headers');
+    const defaultHeaders = Array.from(container.querySelectorAll('input[readonly]'))
+        .map(input => input.value.toLowerCase());
+    
+    // Remove non-default headers
+    Array.from(container.children).forEach(row => {
+        const nameInput = row.querySelector('input[placeholder="Header name"]');
+        if (nameInput && !defaultHeaders.includes(nameInput.value.toLowerCase())) {
+            row.remove();
+        }
+    });
+
+    // Add saved headers
+    headers.forEach(header => {
+        if (!defaultHeaders.includes(header.name.toLowerCase())) {
+            addHeaderWithValues(header.name, header.value);
+        }
+    });
+}
+
+// Load parameters with dynamic updates
+function loadParameters(parameters) {
+    if (!parameters) return;
+    
+    parameters.forEach(param => {
+        const input = document.querySelector(`input[data-param="${param.name}"]`);
+        if (input) {
+            input.value = param.value;
+            input.closest('.param-input-group').querySelector('.param-location').value = param.location;
+        }
+    });
+}
+
+// Modified header addition with change detection
+function addHeaderWithValues(name, value) {
+    const headersContainer = document.getElementById('headers');
+    
+    // Update existing header if present
+    const existing = Array.from(headersContainer.querySelectorAll('input[placeholder="Header name"]'))
+        .find(input => input.value === name);
+    
+    if (existing) {
+        existing.parentElement.querySelector('input[placeholder="Header value"]').value = value;
+    } else {
+        const newHeader = document.createElement('div');
+        newHeader.className = 'param-row mb-2 d-flex align-items-center gap-2';
+        newHeader.innerHTML = `
+            <input type="text" class="form-control" placeholder="Header name" value="${name}">
+            <input type="text" class="form-control" placeholder="Header value" value="${value}">
+            <button class="btn btn-sm btn-outline-danger" onclick="removeParamRow(this)">
+                <i class="bi bi-trash"></i>
+            </button>
+        `;
+        headersContainer.appendChild(newHeader);
+    }
+}
+
+// Auto-save when leaving page
+window.addEventListener('beforeunload', () => {
+    if(confirm('Do you want to save changes before leaving?')) {
+        saveConfig();
+    }
+});
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', () => {
+    loadConfig();
+    
+    // Add change listeners for auto-update
+    document.querySelectorAll('#headers input, #parameterInputs input').forEach(input => {
+        input.addEventListener('change', () => {
+            const config = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+            localStorage.setItem(STORAGE_KEY, JSON.stringify({
+                ...config,
+                headers: getCurrentHeaders(),
+                parameters: getCurrentParameters()
+            }));
+        });
+    });
+});
+
+  const spec = JSON.parse(raw);
+  findParams(spec);
+
+
+    </script>
+</body>
+</html>
